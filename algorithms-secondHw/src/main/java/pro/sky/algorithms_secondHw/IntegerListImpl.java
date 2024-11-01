@@ -79,7 +79,9 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public boolean contains(Integer item) {
-        return indexOf(item) != -1;
+        Integer[] storageCopy = toArray();
+        sort(storageCopy);
+        return binarySearch(storageCopy, item);
     }
 
     @Override
@@ -154,7 +156,7 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-    private void sort(int[] arr) {
+    private void sort(Integer[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];
             int j = i;
@@ -166,7 +168,7 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-    private boolean binarySearch(int[] arr, Integer item) {
+    private boolean binarySearch(Integer[] arr, Integer item) {
         int min = 0;
         int max = arr.length - 1;
 
